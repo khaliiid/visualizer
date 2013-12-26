@@ -6,12 +6,26 @@ define(['modules/defaultmodel', 'util/datatraversing'], function(Default, Traver
 		getValue: function() {
 			return this.dataValue;
 		},
-		
-		getjPath: function(rel) {
-			return {};
+
+		getjPath: function(rel, accepts) {
+
+			var data = this.module.getDataFromRel('list');
+			
+			if( ! data || data == null ) {
+				return;
+			}
+
+			data = data.getData( );
+			
+			if( data == null ) {
+				return;
+			}
+			
+			var jpath = {};
+			Traversing._getjPath( data[ i ], jpath );	
+			return jpath;
 		}
 	});
-
+	
 	return model;
 });
-	

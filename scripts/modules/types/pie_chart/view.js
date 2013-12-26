@@ -1,128 +1,125 @@
-define(['require', 'modules/defaultview', 'libs/plot/plot', 'util/jcampconverter', 'util/datatraversing', 'util/api', 'util/util'], function(require, Default, Graph, JcampConverter, DataTraversing, API, Util) {
+define(['modules/defaultview', 'util/datatraversing', 'util/domdeferred', 'util/api', 'util/typerenderer'], function(Default, Traversing, DomDeferred, API, Renderer) {
 	
 	function view() {};
 	view.prototype = $.extend(true, {}, Default, {
 
-
-		init: function() {
+		init: function() {	
+			var html = "";
+			html += '<div></div>';
 			
-			var self = this;
-
-			this.highlightedAtom;
-			this.dom = $('<iframe />').attr('src', require.toUrl('./jsme.html'));
-			this.module.getDomContent().html(this.dom);
 			
-			this.dom.bind('load', function() {
-				self.dom.get( 0 ).contentWindow.setController( self.module.controller );
-				self.dom.get( 0 ).contentWindow.setView( self );
-			});
+			this.dom = $( html ).css( { 
+				display: 'table',
+				height: '100%',
+				width: '100%'
+			} );
 
-			this.onReady = $.Deferred();
-			this._highlights = this._highlights || [];
+			this.module.getDomContent( ).html( this.dom );
+			this.fillWithVal( this.module.getConfiguration( 'defaultvalue' ) );
 		},
 		
-		inDom: function() { },
-
-		getPrefs: function() {
-			return this.module.getConfiguration( 'prefs' ).join( );
-		},
-
-		onResize: function() {
-			this.dom.attr( 'width', this.width );
-			this.dom.attr( 'height', this.height );
-
-			this.module.getDomContent().css( 'overflow', 'hidden' );
-
-			if( this.dom.get( 0 ).contentWindow.setSize ) {
-				this.dom.get( 0 ).contentWindow.setSize( this.width, this.height );
-			}
-		},
-		
-		onProgress: function() {
-
-			this.dom.html( "Progress. Please wait..." );
-		},
-
 		blank: {
-			'mol': function(varName) {
-		//		console.log("CLEAR");
-				if (this.dom.get(0).contentWindow.clear) {
-					this.dom.get(0).contentWindow.clear();
-				}
+			value: function(varName) {
+				this.dom.empty();
 			}
 		},
+		
+		inDom: function() {},
 
-		update: { 
+		update: {
+			'color': function(color) {
 
-			'mol': function(moduleValue) {
-
-				//console.log(moduleValue);
-				var contentWindow = this.dom.get(0).contentWindow;
-//console.log(this.dom.get(0));
-				if(!moduleValue)
+				if( color === undefined ) {
 					return;
-
-				contentWindow.setMolFile(moduleValue.get());
-			
-				this._currentValue = moduleValue;
-
-				API.killHighlight( this.module.getId() );
-				API.listenHighlight( moduleValue._highlight, function(onOff, highlightId) {
-					var atoms = [];
-					for ( var i = 0, l = highlightId.length ; i < l ; i++ ) {
-						if(!(moduleValue._atoms[highlightId[i]] instanceof Array))
-							moduleValue._atoms[highlightId[i]] = [moduleValue._atoms[highlightId[i]]];
-						atoms = atoms.concat(moduleValue._atoms[highlightId[i]]);
-					}
-					contentWindow.setHighlight(atoms, onOff);
-
-				}, false, this.module.getId());
-			},
-
-			'xArray': function(moduleValue, varname) {
-				
-			},
-		},
-
-
-		_doHighlight: function(mol, id) {
-			if (! this._currentValue) return;
-			for(var i in this._currentValue._atoms) {
-				if (id==0) {
-					if(this._currentValue._atoms[i].indexOf(this.highlightedAtom) > -1) {
-						API.highlight(i, false);
-					}
-				} else {
-					if(this._currentValue._atoms[i].indexOf(id-1) > -1) {
-						API.highlight(i, true);
-					}						
 				}
+				
+				this.module.getDomContent( ).css( 'backgroundColor', color );
+			},
 
+			'value': function(moduleValue) {
+				var view = this,
+					sprintfVal = this.module.getConfiguration('sprintf');
+var G = this.module.getDomContent( );
+				if( moduleValue == undefined ) {
+
+					this.fillWithVal( this.module.getConfiguration('defaultvalue') || '' );
+					
+
+				} else {
+
+					Renderer.toScreen( moduleValue, this.module ).always(function(val) {
+						
+							view.fillWithVal( val );
+							//var d = G.;
+							
+							var c = document.getElementById('klawi');
+							//zz = c.value;
+							alert(c.innerHTML);
+							//console.log(c);
+							
+var vn = "<script type=text/javascript>var data = [], series = 700;data[0] = {label: Series0,data: 200} data[1] = {label: Series1 ,data: 111}</script>";
+//vn += " var data = [];";
+//vn += "var data = [], series = 700;data[0] = {label: 'Series0',data: 200} data[1] = {label: 'Series1' ,data: 111}</script>";
+				
+
+		
+
+
+		
+vn += $("<iframe style='height: inherit;width: inherit;'/>").attr('src', require.toUrl('./modules/types/pie_chart/jsme.html'));
+							//var HGHG = c.innerHTML;
+							view.dom.html( vn );
+			//var div = $("<div  id='klawi'/>")
+			
+			DomDeferred.notifywith( vn );
+			
+	
+
+						
+							
+						
+
+					});
+
+				}
 			}
-
-			this.highlightedAtom = id-1;
 		},
+		
+		fillWithVal: function(val) {
+			
+			var valign = this.module.getConfiguration('valign'),
+				align = this.module.getConfiguration('align'),
+				fontcolor = this.module.getConfiguration('fontcolor'),
+				fontsize = this.module.getConfiguration('fontsize'),
+				font = this.module.getConfiguration('font'),
+				preformatted = this.module.getConfiguration('preformatted');
+			
+			var div = $("<div  id='klawi'/>").css( {
+				fontFamily: font || 'Arial',
+				fontSize: fontsize || '10pt',
+				color: fontcolor || '#000000',
+				display: 'none',
+				'vertical-align': valign || 'top',
+				textAlign: align || 'center',
+				width: '100%',
+				height: '100%',
+				'white-space': preformatted || 'normal'
+			} ).html( val );
 
-
-		resetAnnotations: function() {
-
-		//	Util.doAnnotations(this.annotations, this.graph)
+//			if (preformatted) div.html("<pre />").html( val );
+							//this.module.getDomContent().html(vn);
+							
+			this.dom.html( div );
+			DomDeferred.notify( div );
+			
 		},
-
-	
-		onActionReceive: {
-	
-		},
-
+		
 		getDom: function() {
 			return this.dom;
 		},
 		
-		typeToScreen: {
-			
-		}
+		typeToScreen: {}
 	});
+
 	return view;
 });
- 
-

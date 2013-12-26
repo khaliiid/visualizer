@@ -7,11 +7,9 @@ define(['require', 'modules/defaultview', 'libs/plot/plot', 'util/jcampconverter
 		init: function() {
 			
 			var self = this;
-			var jpaths = this.module.getConfiguration('x');
-			alert(jpaths);
-			//this.highlightedAtom;
-			//this.dom = $('<iframe />').attr('src', require.toUrl('./jsme.html'));
-			this.dom = $('<p />').text(jpaths);
+
+			this.highlightedAtom;
+			this.dom = $('<iframe />').attr('src', require.toUrl('./jsme.html'));
 			this.module.getDomContent().html(this.dom);
 			
 			this.dom.bind('load', function() {

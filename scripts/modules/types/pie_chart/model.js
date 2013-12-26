@@ -9,10 +9,9 @@ define(['modules/defaultmodel', 'util/datatraversing'], function(Default, Traver
 
 		getjPath: function(rel, accepts) {
 
-			var data = this.module.getDataFromRel('var1');
-			alert(data);
-			if( ! data || data == null ) {
+			var data = this.module.getDataFromRel('list');
 			
+			if( ! data || data == null ) {
 				return;
 			}
 

@@ -1,0 +1,201 @@
+<html><object type="{0C55C096-0F1D-4F28-AAA2-85EF591126E7}" cotype="cs" id="cosymantecbfw" style="width: 0px; height: 0px; display: block;"></object><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link href="examples.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+
+	.demo-container {
+		position: relative;
+		height: 400px;
+	}
+
+	#placeholder {
+		width: 550px;
+	}
+
+	#menu {
+		position: absolute;
+		top: 20px;
+		left: 625px;
+		bottom: 20px;
+		right: 20px;
+		width: 200px;
+	}
+
+	#menu button {
+		display: inline-block;
+		width: 200px;
+		padding: 3px 0 2px 0;
+		margin-bottom: 4px;
+		background: #eee;
+		
+		border-radius: 2px;
+		font-size: 16px;
+		-o-box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+		-ms-box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+		-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+		-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+		box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+		cursor: pointer;
+	}
+
+	
+
+	</style>
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../../excanvas.min.js"></script><![endif]-->
+	<script language="javascript" type="text/javascript" src="jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="jquery.flot.js"></script>
+	<script language="javascript" type="text/javascript" src="jquery.flot.pie.js"></script>
+	<script type="text/javascript">
+
+	$(function() {
+
+		// Example Data
+
+		//var data = [
+		//	{ label: "Series1",  data: 10},
+		//	{ label: "Series2",  data: 30},
+		//	{ label: "Series3",  data: 90},
+		//	{ label: "Series4",  data: 70},
+		//	{ label: "Series5",  data: 80},
+		//	{ label: "Series6",  data: 110}
+		//];
+
+		//var data = [
+		//	{ label: "Series1",  data: [[1,10]]},
+		//	{ label: "Series2",  data: [[1,30]]},
+		//	{ label: "Series3",  data: [[1,90]]},
+		//	{ label: "Series4",  data: [[1,70]]},
+		//	{ label: "Series5",  data: [[1,80]]},
+		//	{ label: "Series6",  data: [[1,0]]}
+		//];
+
+		//var data = [
+		//	{ label: "Series A",  data: 0.2063},
+		//	{ label: "Series B",  data: 38888}
+		//];
+
+		// Randomly Generated Data
+
+		var data = [],
+			series = Math.floor(Math.random() * 6) + 3;
+			data[0] = {
+				label: "Series0",
+				data: Math.floor(Math.random() * 100) + 1
+				}
+				data[1] = {
+				label: "Series1" ,
+				data: Math.floor(Math.random() * 100) + 1
+				}
+/*
+		for (var i = 0; i < series; i++) {
+			data[i] = {
+				label: "Series" + (i + 1),
+				data: Math.floor(Math.random() * 100) + 1
+			}
+		} */
+
+		var placeholder = $("#placeholder");
+
+		
+
+		$("#example-12").click(function() {
+
+			placeholder.unbind();
+
+			
+
+			$.plot(placeholder, data, {
+				series: {
+					pie: { 
+						show: true,
+						radius: 0.7,
+						//innerRadius: 200
+						
+					}
+				},
+				grid: {
+					hoverable: true,
+					
+					clickable: true
+				}
+			});
+
+			setCode([
+				"$.plot('#placeholder', data, {",
+				"    series: {",
+				"        pie: {",
+				"            show: true",
+				"        }",
+				"    },",
+				"    grid: {",
+				"        hoverable: true,",
+				"        clickable: true",
+				"    }",
+				"});"
+			]);
+
+			placeholder.bind("plothover", function(event, pos, obj) {
+
+				if (!obj) {
+					return;
+				}
+
+				var percent = parseFloat(obj.series.percent).toFixed(2);
+				$("#hover").html("<span style='font-weight:bold; color:" + obj.series.color + "'>" + obj.series.label + " (" + percent + "%)</span>");
+			});
+
+			placeholder.bind("plotclick", function(event, pos, obj) {
+
+				if (!obj) {
+					return;
+				}
+
+				percent = parseFloat(obj.series.percent).toFixed(2);
+				alert(""  + obj.series.label + ": " + percent + "%");
+			});
+		});
+
+		// Show the initial default chart
+
+		$("#example-12").click();
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+	// A custom label formatter used by several of the plots
+
+	function labelFormatter(label, series) {
+		return "<div style='font-size:8pt; text-align:center; padding:2px; color:white;'>" + label + "<br/>" + Math.round(series.percent) + "%</div>";
+	}
+
+	//
+
+	function setCode(lines) {
+		$("#code").text(lines.join("\n"));
+	}
+
+	</script>
+<script type="text/javascript" id="waxCS">var WAX = function () { var _arrInputs; return { getElement: function (i) { return _arrInputs[i]; }, setElement: function(i){ _arrInputs=i; } } }(); function waxGetElement(i) { return WAX.getElement(i); } function coSetPageData(t, d){ if('wax'==t) { WAX.setElement(d);} }</script></head>
+<body>
+
+
+		<div class="demo-container">
+			<div id="placeholder" class="demo-placeholder" style="padding: 0px; position: relative;">
+			<canvas class="flot-base" width="40%" height="363" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 40%; height: 363px;"></canvas>
+			<canvas class="flot-overlay" width="40%" height="363" style="direction: ltr; position: absolute; left: 0px; top: 0px; 40%; height: 363px;"></canvas>
+			<div id="menu">
+				
+				<button id="example-12"></button>
+			</div>
+		</div>
+		</div>
+
+		
+		
+
+		
+
+
+</body></html>

@@ -1,0 +1,102 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title></title>
+
+    <script type="text/javascript" language="javascript" src="../../../libs/jquery/jquery.js"></script>
+    <script type="text/javascript" language="javascript" src="../../../libs/jsmol/JSmol.min.nojq.js"></script>
+    <script type="text/javascript" language="javascript" src="../../../libs/jsmol/jquery.js"></script>
+    <script type="text/javascript" language="javascript" src="../../../libs/flot/jquery.flot.time.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../../../libs/flot/jquery.flot.resize.js"></script>
+    <script type="text/javascript" language="javascript" src="../../../libs/flot/jquery.flot.canvas.js"></script>
+    <script type="text/javascript" language="javascript" src="../../../libs/flot/jquery.flot.js"></script>
+    <script type="text/javascript" language="javascript" src="../../../libs/flot/jquery.flot.pie.js"></script>
+    <script language="javascript" type="text/javascript" src="../../jquery.flot.js"></script>
+    <script type="text/javascript" language="javascript" src="./libs/jsme/jsme.nocache.js"></script>
+		<link href="examples.css" rel="stylesheet" type="text/css">
+    <title>Flot Examples: Basic Usage</title>
+
+
+	$(function() {
+
+		var d1 = [];
+		for (var i = 0; i < 14; i += 0.5) {
+			d1.push([i, Math.sin(i)]);
+		}
+
+		var d2 = [[0, 5], [2, 6], null, [2, 8], [8, 5], [9, 13]];
+
+		// A null signifies separate line segments
+
+		var d3 = [[0, 12], [7, 12], null, [7, 2.5], [12, 2.5]];
+
+		$.plot("#placeholder", [ d1, d2, d3 ]);
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+	</script>
+</head>
+<body>
+
+	<div id="header">
+		<h2>Basic Usage</h2>
+	</div>
+
+	<div id="content">
+
+		<div class="demo-container">
+			<div id="placeholder" class="demo-placeholder"></div>
+		</div>
+
+		<p>You don't have to do much to get an attractive plot.  Create a placeholder, make sure it has dimensions (so Flot knows at what size to draw the plot), then call the plot function with your data.</p>
+
+		<p>The axes are automatically scaled.</p>
+
+	</div>
+
+	<div id="footer">
+		Copyright &copy; 2007 - 2013 IOLA and Ole Laursen
+	</div>
+
+</body>
+</html>
+
+</head>
+<body style="margin: 0; padding: 0;">
+
+<div id="appletContainer" style="width:600px;height:300px;background-color:green" ></div>
+<button id="example-1" style="width:600px;height:300px" >example</button>
+
+<script type="text/javascript">
+$("#example-1").click(function() {
+
+			placeholder.unbind();
+
+			$("#title").text("Default pie chart");
+			$("#description").text("The default pie chart with no options set.");
+
+			$.plot(placeholder, dat, {
+				series: {
+					pie: { 
+						show: true
+					}
+				}
+			});
+
+			setCode([
+				$.plot('#appletContainer', dat, {",
+				   series: {",
+				        pie: {",
+				            show: true",
+				        }",
+				    }",
+				});"
+			]);
+		});
+			</script></body>
+</html>

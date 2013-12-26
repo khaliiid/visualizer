@@ -1,0 +1,162 @@
+{
+	"_name": "Master",
+	"_time": 1369723829578,
+	"_saved": 1369723829578,
+	"_local": false,
+	"modules": [
+		{
+			"type": "jqgrid",
+			"title": "Untitled module",
+			"displayWrapper": true,
+			"position": {
+				"left": 2,
+				"top": 0
+			},
+			"size": {
+				"width": 14,
+				"height": 20
+			},
+			"configuration": {
+				"sections": {},
+				"groups": {
+					"group": [
+						{
+							"nblines": [
+								null
+							],
+							"toggle": [
+								null
+							],
+							"colorjpath": [
+								null
+							],
+							"displaySearch": [
+								[]
+							],
+							"filterRow": [
+								null
+							]
+						}
+					],
+					"cols": [
+						[
+							{
+								"name": "Name",
+								"jpath": "element.name",
+								"number": [],
+								"editable": "none"
+							}
+						]
+					]
+				}
+			},
+			"id": 1,
+			"bgColor": [
+				255,
+				255,
+				255,
+				0
+			],
+			"vars_in": [
+				{
+					"rel": "list",
+					"name": "result"
+				}
+			],
+			"actions_in": [
+				{}
+			],
+			"vars_out": [
+				{
+					"event": "onHover",
+					"rel": "element",
+					"jpath": "element.jcamp",
+					"name": "jcamp"
+				}
+			],
+			"actions_out": [
+				{}
+			]
+		},
+		{
+			"type": "gcms",
+			"title": "Untitled module",
+			"displayWrapper": true,
+			"position": {
+				"left": 18,
+				"top": 0
+			},
+			"size": {
+				"width": 62,
+				"height": 84
+			},
+			"configuration": {
+				"continuous": false,
+				"nbzones": 1
+			},
+			"id": 2,
+			"bgColor": "",
+			"vars_in": [
+				{
+					"rel": "jcamp",
+					"name": "jcamp"
+				},
+				{
+					"rel": "",
+					"name": ""
+				}
+			],
+			"actions_in": [
+				{
+					"rel": "",
+					"name": ""
+				}
+			],
+			"actions_out": [
+				{
+					"event": "onMSTrackingAdded",
+					"rel": "msIon",
+					"jpath": "",
+					"name": "msIon"
+				},
+				{
+					"event": "onZoomGCChange",
+					"rel": "fromtoGC",
+					"jpath": "",
+					"name": "setGCFromTo"
+				}
+			],
+			"vars_out": [
+				{
+					"event": "onZoomGCChange",
+					"rel": "",
+					"jpath": "",
+					"name": "sdsdf"
+				},
+				{
+					"event": "onMSSelect",
+					"rel": "msSelected",
+					"jpath": "",
+					"name": "MS"
+				}
+			]
+		}
+	],
+	"configuration": {
+		"variableFilters": {},
+		"title": "2D spectra Demo"
+	},
+	"variables": [
+		{
+			"varname": "result",
+			"jpath": "element.result",
+			"url": ""
+		},
+		{
+			"varname": "mol",
+			"jpath": "element.mol.0.MOL",
+			"url": ""
+		}
+	],
+	"_version": "2.2"
+}

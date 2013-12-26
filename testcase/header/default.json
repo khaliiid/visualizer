@@ -1,0 +1,31 @@
+{
+	"height": "30px",
+	"elements": 
+
+	[
+		{
+			"type": "autosavelocalview",
+			"label": "Autosave view"
+		},
+
+		{
+			"type": "copyview",
+			"label": "Copy view"
+		},
+
+        {
+                "type": "blankview",
+                "label": "Blank view"
+        },
+
+		{
+			"type": "pushviewtoserver",
+			"label": "Save to server"
+		},
+
+		{
+			"type": "versioning",
+			"label": "Versioning"
+		}	
+	]
+}

@@ -1,0 +1,72 @@
+{
+	“type”:”chart”,
+	“value”: {
+		title: “”,
+		data: 
+		[
+			{
+				x:[],
+				y:[],
+				// z:[],
+				_highlightID:[],
+				info:[{},{}],
+				serieLabel: ””,
+				xAxis: {
+					unit: “”,
+					name: “”,
+					// min,
+					// max
+				}, 
+				yAxis: {
+					unit: “”,
+					name: “”,
+					// min,
+					// max
+				}
+			},
+			{
+				x:[],
+				y:[],
+				// z:[],
+				_highlightID:[],
+				info:[{},{}],
+				serieLabel: ””,
+				xAxis: {
+					unit: “”,
+					name: “”,
+					// min,
+					// max
+				}, 
+				yAxis: {
+					unit: “”,
+					name: “”,
+					// min,
+					// max
+				}
+			},
+			{
+				x:[],
+				y:[],
+				// z:[],
+				_highlightID:[],
+				info:[{},{}],
+				serieLabel: ””,
+				xAxis: {
+					unit: “”,
+					name: “”,
+					// min,
+					// max
+				}, 
+				yAxis: {
+					unit: “”,
+					name: “”,
+					// min,
+					// max
+				}
+			}
+
+
+]
+}
+	}
+}

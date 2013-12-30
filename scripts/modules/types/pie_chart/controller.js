@@ -11,7 +11,7 @@ define(['modules/defaultcontroller'], function(Default) {
 			rels: {
 				
 			}
-		},
+		},a²
 		
 		
 		configurationReceive: {

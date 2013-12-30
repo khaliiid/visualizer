@@ -1,4 +1,4 @@
-define(['modules/defaultview', 'util/datatraversing', 'util/domdeferred', 'util/api', 'util/typerenderer'], function(Default, Traversing, DomDeferred, API, Renderer) {
+define(['modules/defaultview', 'util/datatraversing', 'util/domdeferred', 'util/api', 'util/typerenderer', 'modules/types/pie_chart/Prepare'], function(Default, Traversing, DomDeferred, API, Renderer,Prepare) {
 	
 	function view() {};
 	view.prototype = $.extend(true, {}, Default, {
@@ -54,26 +54,31 @@ var G = this.module.getDomContent( );
 							
 							var c = document.getElementById('klawi');
 							//zz = c.value;
-							alert(c.innerHTML);
+							//alert(c.innerHTML);
 							//console.log(c);
 							
-var vn = "<script type=text/javascript>var data = [], series = 700;data[0] = {label: Series0,data: 200} data[1] = {label: Series1 ,data: 111}</script>";
+//var vn = "<script type=text/javascript>var data = [], series = 700;data[0] = { label: Series0, data: 200 } data[1] = { label: Series1 ,data: 111 }</script>";
 //vn += " var data = [];";
 //vn += "var data = [], series = 700;data[0] = {label: 'Series0',data: 200} data[1] = {label: 'Series1' ,data: 111}</script>";
+/*(function(val) {
 				
+document.write('<script type="text/javascript">'+ Prepare.prep() +'</script>');
+	});	*/
 
-		
-
-
-		
-vn += $("<iframe style='height: inherit;width: inherit;'/>").attr('src', require.toUrl('./modules/types/pie_chart/jsme.html'));
+var mydoom = Prepare.prep();
+var mydoom3 = require.toUrl('./modules/types/pie_chart/jsme.html');
+var mydoom2 = '<iframe src="'+ mydoom3 +'"></iframe>';
+var vn = '<script type="text/javascript">'+mydoom+'</script>' + mydoom2;
+ //vn += mydoom2;
 							//var HGHG = c.innerHTML;
 							view.dom.html( vn );
-			//var div = $("<div  id='klawi'/>")
+							DomDeferred.notify( vn ); // bhad joj stora tanloh lpage html kamla f ifram o kattlah alaiiiise hanta chof
+			//var div = $("<div  id='klawi'/>") //att ndir dak lcode fl html hta hoa hit hoa li ti 3ti l blan les valeur bach ye3raf mayrssém....
 			
-			DomDeferred.notifywith( vn );
 			
-	
+			//var g = "<script type=text/javascript>"+ Prepare.prep() +"</script>";
+			//alert(g); daba hna sure blli had g fiha l code li bghina
+	//document.write("<script type=text/javascript>"+ Prepare.prep() +"</script>");
 
 						
 							

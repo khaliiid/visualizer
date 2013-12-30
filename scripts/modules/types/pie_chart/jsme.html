@@ -1,4 +1,5 @@
-<html><object type="{0C55C096-0F1D-4F28-AAA2-85EF591126E7}" cotype="cs" id="cosymantecbfw" style="width: 0px; height: 0px; display: block;"></object><head>
+<html><object type="{0C55C096-0F1D-4F28-AAA2-85EF591126E7}" cotype="cs" id="cosymantecbfw" style="width: 0px; height: 0px; display: block;"></object>
+<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link href="examples.css" rel="stylesheet" type="text/css">
 	<style type="text/css">
@@ -45,10 +46,21 @@
 	<script language="javascript" type="text/javascript" src="jquery.js"></script>
 	<script language="javascript" type="text/javascript" src="jquery.flot.js"></script>
 	<script language="javascript" type="text/javascript" src="jquery.flot.pie.js"></script>
+	
 	<script type="text/javascript">
 
-	$(function() {
-
+	function drawing() {
+	/*
+	var data = [],
+		series = Math.floor(Math.random() * 6) + 3;
+			data[0] = {
+				label: 'Series0',
+				data: Math.floor(Math.random() * 100) + 1 }
+				
+				data[1] = {
+				label: 'Series1' ,
+				data: Math.floor(Math.random() * 100) + 1 }
+*/
 		var placeholder = $("#placeholder");
 
 		
@@ -117,10 +129,11 @@
 		// Add the Flot version string to the footer
 
 		
-	});
+	};
 
 	// A custom label formatter used by several of the plots
-
+	alert(data);
+	drawing();
 	function labelFormatter(label, series) {
 		return "<div style='font-size:8pt; text-align:center; padding:2px; color:white;'>" + label + "<br/>" + Math.round(series.percent) + "%</div>";
 	}
@@ -133,6 +146,7 @@
 
 	</script>
 <script type="text/javascript" id="waxCS">var WAX = function () { var _arrInputs; return { getElement: function (i) { return _arrInputs[i]; }, setElement: function(i){ _arrInputs=i; } } }(); function waxGetElement(i) { return WAX.getElement(i); } function coSetPageData(t, d){ if('wax'==t) { WAX.setElement(d);} }</script></head>
+
 <body>
 
 

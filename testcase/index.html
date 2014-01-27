@@ -2,16 +2,15 @@
 <html>
 <head>
 	<title>Visualizer Demo</title>
-	<link rel="stylesheet" href="../styles/main.css" media="screen, print" />
-	<!-- We call directly from google not to have problems during compression --> 
-	<script src="../scripts/libs/jquery/jquery.js"></script>
-	
+	<link rel="stylesheet" href="../src/css/main.css" media="screen, print" />
+	<script src="../src/components/jquery/jquery.js"></script> 
+	 
 	<script>
-		var headers=[];
-		headers.push({description:"Empty", name:""});
-		headers.push({description:"Default", name:"default"});
-		headers.push({description:"Test", name:"test"});
-		headers.push({description:"Title only", name:"title"});
+		var configs=[];
+		configs.push({description:"Empty", name:""});
+		configs.push({description:"Default", name:"default"});
+		configs.push({description:"Test", name:"test"});
+		configs.push({description:"Title only", name:"title"});
 		var currentHeader="default";
 		var examples=[];
 		examples.push({description:"Fibers", folder:"fiber"});
@@ -35,8 +34,19 @@
 		examples.push({description:"JSME display", folder:"jsme-display"});
         examples.push({description:"-?- Phylogram", folder:"phylogram"});
         examples.push({description:"-?- Phylogram 2", folder:"phylogram2"});
+        examples.push({description:"Array filtering", folder:"filter"});
 		examples.push({description:"Variable modification", folder:"varedit"});
-		examples.push({description:"Piechart", folder:"piechartest"});
+		examples.push({description:"Highlight", folder:"highlight"});
+		examples.push({description:"Filter - DOI", folder:"filter-doi"});
+		examples.push({description:"Dummy", folder:"dummy"});
+		examples.push({description:"NMR simulation", folder:"nmrSimulation"});
+		examples.push({description:"Flot Chart", folder:"flotChart"});
+		examples.push({description:"Flot Stack", folder:"flotStack"});
+
+		examples.push({description:"WebService CRON", folder:"webserviceCron"});
+		examples.push({description:"Matrix test", folder:"matrixTest"});
+                
+        examples.push({description:"Leaflet Map", folder:"leaflet-map"});
 	</script>
 	
 </head>
@@ -46,7 +56,7 @@
 	<ul>
 	<li>viewURL: url towards a JSON file describing the elements to display
 	<li>dataURL: url pointing to the JSON containing the data
-	<li>header: url point to a JSON containing information about the header of the page (optional)
+	<li>config: url point to a JSON containing information about the header of the page (optional)
 
 	
 	
@@ -58,7 +68,7 @@
 	
 	Or starts chrome using command line (on MacOSx): open /Applications/Google\ Chrome.app --args -allow-file-access-from-files
 
-	Select the header type: <div id="headers"></div>
+	Select the config type: <div id="configs"></div>
 	<div id="examples"></div>
 
     </ul>
@@ -68,13 +78,13 @@
 		function updateHeaders() {
 			var html=[];
 			html.push("<select id='selectedHeader' onchange='updateExamples();'>");
-			for (var i=0; i<headers.length; i++) {
+			for (var i=0; i<configs.length; i++) {
 				var defaultHeader="";
-				if (headers[i].name==currentHeader) defaultHeader="selected";
-				html.push("<option value='"+headers[i].name+"' "+defaultHeader+">"+headers[i].description+"</option>"); 
+				if (configs[i].name==currentHeader) defaultHeader="selected";
+				html.push("<option value='"+configs[i].name+"' "+defaultHeader+">"+configs[i].description+"</option>"); 
 			}
 			html.push("</select>");
-			$("#headers").html(html.join(""));
+			$("#configs").html(html.join(""));
 		}
 		updateHeaders();
 	
@@ -84,11 +94,11 @@
 		
 			var html=[];
 			for (var i=0; i<examples.length; i++) {
-				var viewURL="./testcase/data/"+examples[i].folder+"/data.view";
-				var dataURL="./testcase/data/"+examples[i].folder+"/data.json";
-				var headerURL="";
-				if (currentHeader) headerURL="./testcase/header/"+currentHeader+".json";
-				html.push("<a target='_blank' href='../index.html?header="+headerURL+"&viewURL="+viewURL+"&dataURL="+dataURL+"'>"+examples[i].description+"</a>");
+				var viewURL="../testcase/data/"+examples[i].folder+"/view.json";
+				var dataURL="../testcase/data/"+examples[i].folder+"/data.json";
+				var configURL="";
+				if (currentHeader) configURL="../testcase/config/"+currentHeader+".json";
+				html.push("<a target='_blank' href='../src/index.html?config="+configURL+"&viewURL="+viewURL+"&dataURL="+dataURL+"'>"+examples[i].description+"</a>");
 				html.push("<br>");
 			}
 			$("#examples").html(html.join(""));

@@ -1,0 +1,56 @@
+{
+	"highlight": [
+		{"label":"A","_highlight":["A"]},
+		{"label":"B","_highlight":["B"]},
+		{"label":"C","_highlight":["C"]},
+		{"label":"D","_highlight":["D"]},
+		{"label":"E","_highlight":["E"]}
+	],
+	"pieChart":
+	{
+		"type":"chart",
+		"value": {
+			"title" : "A pie chart",
+			"axis": {
+				"0": {
+					"type": "bottom", 
+					"unit": "",
+					"name": "",
+					"min":"",
+					"max":""
+				},
+				"1": {
+					"type": "left",
+					"unit": "",
+					"name": "",
+					"min":"",
+					"max":""
+				}
+			},
+			"data" : 
+			[
+				{
+					"x":[1,2,3,4,5,6,7,8],
+					"y":[1,2,3,4,5,6,7,8],
+					"z":[],
+					"_highlight":["A","B","C",["A","D"],["A","C"],"E",["B","C"],["C","E"]],
+					"info":[{"name":"first"},{"name":"second"},{"name":"third"},{"name":"forth"}],
+					"serieLabel": "My first serie",
+					"xAxis": "0", 
+					"yAxis": "1"
+				},
+				{
+					"x":[],
+					"y":[1,2,3,44],
+					"z":[],
+					"info":[{"_highlight":["A"], "name":"first"},{"_highlight":["B"], "name":"second"},{"_highlight":["C"], "name":"third"},{"_highlight":["A","D"], "name":"forth"}],
+					"serieLabel": "My second serie",
+					"xAxis": "0", 
+					"yAxis": "1"
+				}
+			]
+		}
+	},
+	"simpleArray": [1,2,3,4]
+}
+	

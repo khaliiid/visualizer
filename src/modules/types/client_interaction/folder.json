@@ -1,0 +1,14 @@
+{
+	"modules": [
+		{
+			"moduleName": "Button action",
+			"url": "modules/types/client_interaction/button_action/"
+		},
+		{
+			"moduleName": "Two dimensional list",
+			"url": "modules/types/client_interaction/dragdrop/"
+		}
+	],
+	"name": "Client interaction",
+	"folders": {}
+}

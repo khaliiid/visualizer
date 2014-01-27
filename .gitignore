@@ -1,7 +1,7 @@
 .DS_Store
-
-scripts/libs/.DS_Store
-
-scripts/modules/types/plot/view.js
-
 .idea/*
+nbproject/*
+
+src/usr/*/dev
+/node_modules
+/build
